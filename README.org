@@ -1,0 +1,134 @@
+#+title: Shell Currency
+
+* Introduction
+
+** Shell Currency
+Shell currency aims to be a helpful tool in the daily basis of CLI users.
+This simple application provides real time currency information through API requisitions.
+
+=Shell currency provide it as simple and fast as any shell --command and faster than any browser=.
+
+
+** Requirements
+This project works with =http= [[https://www.currencyconverterapi.com/][requisitions to an external API]] for each time
+you call the program. You must to [[https://free.currencyconverterapi.com/free-api-key][generate your own key]] to be able to realize requisitions.
+
+Inside =currency.sh= you can find the global variable =API_KEY=.
+
+#+BEGIN_SRC sh
+declare -r API_KEY="<MyKey>"
+#+END_SRC
+
+Paste the generated key into the quotes.
+
+Also, make sure you have [[https://curl.haxx.se/][curl]] and [[https://curl.haxx.se/][bc]] properly installed. This application
+works through those packages. You can easily try the following commands in your
+shell to install the packages through =apt=:
+
+=curl --version || apt-get install curl= and =bc --version >/dev/null || apt-get install=
+
+* How to Use it
+Open a terminal or command prompt, paste the following command to it:
+
+=git clone https://github.com/RaphaelSilv/shell-currency.git=
+
+Inside =shell-currency= you can find =currency.sh= make sure to provide
+execution rights through [[https://linux.die.net/man/1/chmod][chmod]] command for it.
+
+The last step is to add the absolute path to the file above to your environment
+variables. If you use =zsh= or =bash= open your terminal, go to home and open =.bashrc or .zrsch=
+with you favorite text editor and create an [[https://shapeshed.com/unix-alias/][alias]] as the following:
+
+=alias <MyAlias>=<path>currency.sh=
+
+Close the terminal and open it again.
+
+Now the following command: =curr -f usd -t brl -a 4=
+
+should produce an output similarly like so:
+
+#+BEGIN_SRC sh
+===================================
+date: Sat, 25 Jan 2020 17:36:31 GMT
+
+1 USD = 4.181404 BRL
+===================================
+#+END_SRC
+* Help
+
+The [[https://free.currencyconverterapi.com/][API]] used support the following currencies:
+
+Each country has one 3 digits character used for requisitions. For instance:
+=brl, usd, btc= correspond respectively to =American Dollar, Brazilian reais and
+Bitcoin=
+
+You can have more info in =curr -h=
+
+#+BEGIN_SRC sh
+Afghan Afghani                            Gibraltar Pound                           Omani Rial
+Albanian Lek                              Guatemalan Quetzal                        Paanga
+Algerian Dinar                            Guernsey Pound                            Pakistani Rupee
+Angolan Kwanza                            Guinean Franc                             Panamanian Balboa
+Argentine Peso                            Guyanese Dollar                           Papua New Guinean Kina
+Armenian Dram                             Haitian Gourde                            Paraguayan Guarani
+Aruban Florin                             Honduran Lempira                          Peruvian Nuevo Sol
+Australian Dollar                         Hong Kong Dollar                          Philippine Peso
+Azerbaijani Manat                         Hungarian Forint                          Polish Zloty
+Bahamian Dollar                           Icelandic Kr\u00f3na                      Qatari Riyal
+Bahraini Dinar                            Indian Rupee                              Romanian Leu
+Bangladeshi Taka                          Indonesian Rupiah                         Russian Ruble
+Barbadian Dollar                          Iranian Rial                              Rwandan Franc
+Belarusian Ruble                          Iraqi Dinar                               Saint Helena Pound
+Belize Dollar                             Israeli New Sheqel                        Salvadoran Col\u00f3n
+Bermudan Dollar                           Jamaican Dollar                           Samoan Tala
+Bhutanese Ngultrum                        Japanese Yen                              Sao Tome And Principe Dobra
+Bitcoin                                   Jersey Pound                              Saudi Riyal
+Bolivian Boliviano                        Jordanian Dinar                           Serbian Dinar
+Bosnia And Herzegovina Konvertibilna Mark Kazakhstani Tenge                         Seychellois Rupee
+Botswana Pula                             Kenyan Shilling                           Sierra Leonean Leone
+Brazilian Real                            Kuwaiti Dinar                             Silver (troy ounce)
+British Pound                             Kyrgyzstani Som                           Singapore Dollar
+Brunei Dollar                             Lao Kip                                   Solomon Islands Dollar
+Bulgarian Lev                             Latvian Lats                              Somali Shilling
+Burundi Franc                             Lebanese Lira                             South African Rand
+Cambodian Riel                            Lesotho Loti                              South Korean Won
+Canadian Dollar                           Liberian Dollar                           Special Drawing Rights
+Cape Verdean Escudo                       Libyan Dinar                              Sri Lankan Rupee
+Cayman Islands Dollar                     Macanese Pataca                           Sudanese Pound
+Central African CFA Franc                 Macedonian Denar                          Surinamese Dollar
+CFP Franc                                 Malagasy Ariary                           Swazi Lilangeni
+Chilean Peso                              Malawian Kwacha                           Swedish Krona
+Chilean Unit Of Account                   Malaysian Ringgit                         Swiss Franc
+Chinese Yuan                              Maldivian Rufiyaa                         Syrian Pound
+Colombian Peso                            Manx pound                                Tajikistani Somoni
+Comorian Franc                            Mauritanian Ouguiya                       Tanzanian Shilling
+Congolese Franc                           Mauritian Rupee                           Thai Baht
+Costa Rican Colon                         Mexican Peso                              Trinidad and Tobago Dollar
+Croatian Kuna                             Moldovan Leu                              Tunisian Dinar
+Cuban Convertible Peso                    Mongolian Tugrik                          Turkish New Lira
+Cuban Peso                                Moroccan Dirham                           Turkmenistan Manat
+Czech Koruna                              Mozambican Metical                        UAE Dirham
+Danish Krone                              Myanma Kyat                               Ugandan Shilling
+Djiboutian Franc                          Namibian Dollar                           Ukrainian Hryvnia
+Dominican Peso                            Nepalese Rupee                            United States Dollar
+East Caribbean Dollar                     Netherlands Antillean Gulden              Uruguayan Peso
+Egyptian Pound                            New Belarusian Ruble                      Uzbekistani Som
+Eritrean Nakfa                            New Taiwan Dollar                         Vanuatu Vatu
+Ethiopian Birr                            New Zealand Dollar                        Venezuelan Bolivar
+Euro                                      Nicaraguan Cordoba                        Vietnamese Dong
+Falkland Islands Pound                    Nigerian Naira                            West African CFA Franc
+Fijian Dollar                             North Korean Won                          Yemeni Rial
+Gambian Dalasi                            Norwegian Krone                           Zambian Kwacha
+Georgian Lari                             Old Zambian Kwacha                        Zimbabwean Dollar
+Ghanaian Cedi
+
+#+END_SRC
+
+
+* License
+
+You can use this source code however you like. If necessary, please refer to the
+API's [[https://www.currencyconverterapi.com/terms-of-service][Terms of Service]]. If this was useful in any way please consider starring
+it. If you appreciated the services provided, consider [[https://www.currencyconverterapi.com/buy-me-coffee][buying the API maintainer
+a coffee]]  as he is the one that has costs with domain, hosting, bandwidth
+and, of course, with coffee.
