@@ -1,9 +1,9 @@
-#+title: Shell Currency
+#+title: Shell Currency Exchange
 
 * Introduction
 
-** Shell Currency
-Shell currency aims to be a helpful tool in the daily basis of CLI users.
+** Shell Currency Exchange
+This shell script program aims to be a helpful tool in the daily basis of CLI users.
 This simple application provides real time currency information through API requisitions.
 
 =Shell currency provide it as simple and fast as any shell --command and faster than any browser=.
