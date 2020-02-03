@@ -20,9 +20,9 @@ declare from_currency
 declare TO_CURRENCY
 declare to_currency
 declare CURRENCY_VALUE
-declare -r API_KEY="<>"
+declare -r API_KEY=""
 
-MAP_CURRENCIES=(aed afn all amd ang aoa ars aud awg azn bam bbd bdt bgn bhd bif
+CURRENCIES=(aed afn all amd ang aoa ars aud awg azn bam bbd bdt bgn bhd bif
 bmd bnd bob brl bsd btc btn bwp byn byr bzd cad cdf chf clf clp cny cop crc cuc
 cup cve czk djf dkk dop dzd egp ern etb eur fjd fkp gbp gel ggp ghs gip gmd gnf
 gtq gyd hkd hnl hrk htg huf idr ils imp inr iqd irr isk jep jmd jod jpy kes kgs
@@ -74,16 +74,16 @@ function get_currencies {
 
     CURRENCY_ID="${FROM_CURRENCY}""_""${TO_CURRENCY}"
 
-    curl -silent https://free.currconv.com/api/v7/convert\?q\="${CURRENCY_ID}"\&compact\=ultra\&apiKey\="$API_KEY" > ./assets/.requisitions
+    curl -silent https://free.currconv.com/api/v7/convert\?q\="${CURRENCY_ID}"\&compact\=ultra\&apiKey\="$API_KEY" > ./.assets/.requisitions
 
-    CURRENCY_VALUE=$( cat ./assets/.requisitions | grep "${CURRENCY_ID}" | grep -E '[0-9]' | tr -d '{}"":A-Z_' )
-    DATE=$( cat ./assets/.requisitions | grep -i date )
+    CURRENCY_VALUE=$( cat ./.assets/.requisitions | grep "${CURRENCY_ID}" | grep -E '[0-9]' | tr -d '{}"":A-Z_' )
+    DATE=$( cat ./.assets/.requisitions | grep -i date )
     conversor
 }
 
 function currency_validation {
 
-    for i in "${MAP_CURRENCIES[@]}";
+    for i in "${CURRENCIES[@]}";
     do
         if [[ $to_currency == $i ]];
         then
@@ -99,7 +99,7 @@ function help_func {
 
     echo -e "Usage: <alias> -f [FROM CURRENCY] -t [TO CURRENCY] -a [AMOUNT]"
     echo -e "Please, try one of the valid arguments bellow\n"
-    cat ./assets/.help | pr -t -1
+    cat ./.assets/.help | pr -t -1
 }
 
 function get_version {
