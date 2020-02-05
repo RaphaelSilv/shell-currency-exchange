@@ -11,7 +11,7 @@ This simple application provides real time currency information through API requ
 
 ** Requirements
 This project works with =http= [[https://www.currencyconverterapi.com/][requisitions to an external API]] for each time
-you call the program. You must to [[https://free.currencyconverterapi.com/free-api-key][generate your own key]] to be able to realize requisitions.
+you call the program. You must [[https://free.currencyconverterapi.com/free-api-key][generate your own key]] to be able to realize requisitions.
 
 Inside =currency.sh= you can find the global variable =API_KEY=.
 
