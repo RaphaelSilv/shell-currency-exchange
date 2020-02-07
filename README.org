@@ -128,7 +128,7 @@ Ghanaian Cedi
 * License
 
 You can use this source code however you like. If necessary, please refer to the
-API's [[https://www.currencyconverterapi.com/terms-of-service][Terms of Service]]. If this was useful in any way please consider starring
+API's [[https://www.currencyconverterapi.com/terms-of-service][Terms of Service]]. If this was useful in any way please consider fork
 it. If you appreciated the services provided, consider [[https://www.currencyconverterapi.com/buy-me-coffee][buying the API maintainer
 a coffee]]  as he is the one that has costs with domain, hosting, bandwidth
 and, of course, with coffee.
