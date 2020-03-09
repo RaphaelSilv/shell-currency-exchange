@@ -1,16 +1,16 @@
 HTTP/2 200 
-date: Sun, 09 Feb 2020 02:40:51 GMT
+date: Mon, 09 Mar 2020 00:01:22 GMT
 content-type: application/json; charset=utf-8
 content-length: 20
-set-cookie: __cfduid=de5a228d180be00c56cc3128ad57edab11581216051; expires=Tue, 10-Mar-20 02:40:51 GMT; path=/; domain=.currconv.com; HttpOnly; SameSite=Lax
+set-cookie: __cfduid=dcb698eccf371e4170b96d07ef8d50f3d1583712082; expires=Wed, 08-Apr-20 00:01:22 GMT; path=/; domain=.currconv.com; HttpOnly; SameSite=Lax
 x-powered-by: Express
 access-control-allow-origin: *
 access-control-allow-headers: Origin, X-Requested-With, Content-Type, Accept
 x-content-type-options: nosniff
-etag: W/"14-OIqqoB928RUDNQGnqyR/mdgNyEs"
+etag: W/"14-2GwIn2fc1aUKQ8otMxP/1PfB0xw"
 cf-cache-status: DYNAMIC
 expect-ct: max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
 server: cloudflare
-cf-ray: 56227b226cfbf3b3-GRU
+cf-ray: 571085635d93f61f-GRU
 
-{"USD_BRL":4.320604}
+{"USD_BRL":4.627304}

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/bash
 
 
 #Created: 2020-01-11
@@ -20,7 +20,7 @@ declare from_currency
 declare TO_CURRENCY
 declare to_currency
 declare CURRENCY_VALUE
-declare -r API_KEY=""
+declare -r API_KEY="26afa0acb3633179cb0b"
 
 CURRENCIES=(aed afn all amd ang aoa ars aud awg azn bam bbd bdt bgn bhd bif
 bmd bnd bob brl bsd btc btn bwp byn byr bzd cad cdf chf clf clp cny cop crc cuc
@@ -33,9 +33,47 @@ szl thb tjs tmt tnd top try ttd twd tzs uah ugx usd uyu uzs vef vnd vuv wst xaf
 xag xcd xdr xof xpf yer zar zmk zmw zwl)
 
 function main {
-    currency_validation
-    get_currencies
+
+    if [ -z "${from_currency}" ] && [ -z "${to_currency}" ] && [ -z "${amount}" ]
+    then
+        help_func
+    elif [ -n "${to_currency}" ] && [ -n "${to_currency}" ] && [ -n "${amount}" ]
+    then
+        currency_validation
+        get_currencies
+    else
+        echo "You must to provide a valid argument."
+    fi
 }
+
+
+function currency_validation {
+
+    for i in "${CURRENCIES[@]}";
+    do
+        if [[ "$to_currency" == "$i" ]];
+        then
+            TO_CURRENCY=$( echo "$to_currency" | tr '[:lower:]' '[:upper:]' )
+        elif [[ "$from_currency" == "$i" ]];
+        then
+            FROM_CURRENCY=$( echo "$from_currency" | tr '[:lower:]' '[:upper:]' )
+        fi
+    done
+}
+
+function get_currencies {
+
+    CURRENCY_ID="${FROM_CURRENCY}""_""${TO_CURRENCY}"
+
+    curl -silent https://free.currconv.com/api/v7/convert\?q\=${CURRENCY_ID}\&compact\=ultra\&apiKey\=${API_KEY} > utils/.requisitions
+
+    CURRENCY_VALUE=$( < utils/.requisitions tr ' ' _ | grep "${CURRENCY_ID}" | grep -E '[0-9]' | tr -d '{}"":A-Z_' )
+    DATE=$( < utils/.requisitions tr ' ' ' ' | grep -i date )
+    conversor
+}
+
+
+
 
 function echo_transaction {
 
@@ -70,48 +108,29 @@ function conversor {
 
 }
 
-function get_currencies {
-
-    CURRENCY_ID="${FROM_CURRENCY}""_""${TO_CURRENCY}"
-
-    curl -silent https://free.currconv.com/api/v7/convert\?q\="${CURRENCY_ID}"\&compact\=ultra\&apiKey\="$API_KEY" > ./.assets/.requisitions
-
-    CURRENCY_VALUE=$( cat ./.assets/.requisitions | grep "${CURRENCY_ID}" | grep -E '[0-9]' | tr -d '{}"":A-Z_' )
-    DATE=$( cat ./.assets/.requisitions | grep -i date )
-    conversor
-}
-
-function currency_validation {
-
-    for i in "${CURRENCIES[@]}";
-    do
-        if [[ $to_currency == $i ]];
-        then
-            TO_CURRENCY=$( echo $to_currency | tr 'a-z' 'A-Z' )
-            elif [[ $from_currency == $i ]];
-            then
-                FROM_CURRENCY=$( echo $from_currency | tr 'a-z' 'A-Z' )
-        fi
-    done
-}
-
 function help_func {
 
+    echo -e "\n"
     echo -e "Usage: <alias> -f [FROM CURRENCY] -t [TO CURRENCY] -a [AMOUNT]"
     echo -e "Please, try one of the valid arguments bellow\n"
-    cat ./.assets/.help | pr -t -1
+    < utils/.help tr ' ' ' ' | pr -t -1
+    echo -e "\n"
+    echo "You can find more info in https://github.com/RaphaelSilv/shell-currency-exchange/blob/master/README.org"
 }
 
 function get_version {
   echo "shell-currency - $VERSION"
 }
 
-while getopts "f:t:a:h" opt; do
+while getopts "f:t:a:h" opt;
+do
     case $opt in
         t) to_currency="$OPTARG" ;;
         f) from_currency="$OPTARG" ;;
         a) amount="$OPTARG" ;;
-        h) help_func
+        h) help_func >&2 ;;
+        *) help_func >&2
+           exit 1 ;;
     esac
 done
 shift $((OPTIND -1))
