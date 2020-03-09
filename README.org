@@ -54,6 +54,8 @@ date: Sat, 25 Jan 2020 17:36:31 GMT
 1 USD = 4.181404 BRL
 ===================================
 #+END_SRC
+*Of course the value may change according to economical determinants.*
+
 * Help
 
 The [[https://free.currencyconverterapi.com/][API]] used support the following currencies:
